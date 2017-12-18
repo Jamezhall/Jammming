@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {id: 444, name: 'Starving', artist: 'Haliee Steinfield', album: 'Starving'},
-        {id: 555, name: 'That\'s what I like', artist: 'Bruno Mars', album: '24K Magic'},
-        {id: 777, name: 'Wolves', artist: 'Selena Gomez, Marshmello', album: 'Wolves'}
-      ],
+      searchResults: [],
       playlistName: 'My New Playlist',
       playlistTracks:[
         {id: 111, name: 'Re: Stacks', artist: 'Bon Iver', album: 'For Emma, Forever Ago'},
@@ -59,7 +56,11 @@ class App extends Component {
   }
 
   search(term) {
-    console.log(`Search term: ${term}`);
+    console.log(`%c Jammming Search: ${term} `, 'background: #000; color: #6c41ec; display: block; font-weight: bold');
+    Spotify.search(term)
+    .then(searchResults => this.setState({
+      searchResults: searchResults
+    }));
   }
 
   render() {
