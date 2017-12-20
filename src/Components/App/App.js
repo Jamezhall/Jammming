@@ -11,11 +11,7 @@ class App extends Component {
     this.state = {
       searchResults: [],
       playlistName: 'My New Playlist',
-      playlistTracks:[
-        {id: 111, name: 'Re: Stacks', artist: 'Bon Iver', album: 'For Emma, Forever Ago'},
-        {id: 222, name: 'Paris', artist: 'The Chainsmokers', album: 'Paris'},
-        {id: 333, name: 'Sexy Dirty Love', artist: 'Demi Lovato', album: 'Tell Me You Love Me'}
-      ]
+      playlistTracks:[]
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -51,8 +47,13 @@ class App extends Component {
   }
 
   savePlaylist() {
-    let trackURIs = this.state.playlistTracks.map(i => i.uri);
-    //return trackURIs; am I supposed to return? think something will happen in a later task
+    const trackURIs = this.state.playlistTracks.map(i => i.uri);
+    const playlistName = this.state.playlistName;
+    Spotify.savePlaylist(playlistName, trackURIs);
+    this.setState({
+      playlistName: 'My New Jammming Playlist',
+      playlistTracks: []
+    });
   }
 
   search(term) {

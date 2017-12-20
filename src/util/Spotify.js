@@ -16,24 +16,25 @@ const Spotify = {
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     
     if(urlAccessToken && urlExpiresIn) {
-      //not sure if this is the correct way to access the matched expressions... will see what it spits out. Task in codecademy not very helpful.
       accessToken = urlAccessToken[1];
       expiresIn = Number(urlExpiresIn[1]);
       //Wipes the access token and URL parameters
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
     } else {
+      //Alert for testing. Current codecademy task produces an unituitive interface (ie no click to login)
+      alert('Not Authorized. Click to connect to Spotify.')
       window.location.href = spotifyAuthUrl;
     }
   },
 
   search(term) {
-    if (!accessToken) Spotify.getAccessToken(); 
+    if (!accessToken) Spotify.getAccessToken();
     //According to Spotify API Docs https://developer.spotify.com/web-api/search-item/ spaces need to be encoded
     const searchTerm = `https://api.spotify.com/v1/search?type=track&q=${term.replace(/ /g, '%20')}`;
-    const myInit = { headers: {Authorization: `Bearer ${accessToken}`} };
+    const headers = { headers: {Authorization: `Bearer ${accessToken}`} };
 
-    return fetch(searchTerm, myInit).then(response => {
+    return fetch(searchTerm, headers).then(response => {
       if (response.ok) {
         return response.json();
       }
@@ -53,7 +54,48 @@ const Spotify = {
           };
         });
     });
+  },
+
+  savePlaylist(playlistName, trackUris) {
+    if (!playlistName || !trackUris || trackUris.length === 0) return;
+    const getUserApi = 'https://api.spotify.com/v1/me';
+    const headers = { Authorization: `Bearer ${accessToken}`};
+    let userId;
+    let playlistId;
+
+    //GET the current User ID
+    fetch(getUserApi, {
+      headers: headers 
+    })
+    .then(response => response.json())
+    .then(jsonResponse => userId = jsonResponse.id)
+
+    //create the playlist
+    .then(() => {
+      const createPlaylistApi = `https://api.spotify.com/v1/users/${userId}/playlists`;
+      fetch(createPlaylistApi, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({
+            name: playlistName
+          })
+        })
+        .then(response => response.json())
+        .then(jsonResponse => playlistId = jsonResponse.id)
+        
+        // POST the playlist to spotify
+        .then(() => {
+          const addTracksToPlaylistApi = `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`;
+          fetch(addTracksToPlaylistApi, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+              uris: trackUris
+            })
+          });
+        })
+    })
   }
-}
+};
 
 export default Spotify;
