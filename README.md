@@ -4,12 +4,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+- [ ] **NOTE:** v2 of project [here](https://github.com/Jamezhall/Jammming/tree/v2-dev). A personal [redesign](https://xd.adobe.com/view/9499fcaf-473f-4835-a995-ef9303ed6c40/?fullscreen&hints=off). *WIP*
+
 ## Table of Contents
 
 - [What Is This](#what-is-this)
 - [Features](#features)
-- [Available Scripts](#available-scripts)
-
 
 ## What Is This
 
@@ -28,25 +28,7 @@ Below is a list of the website's features:
 - Remove Song from Custom Playlist — users can remove a track from their playlist by selecting a `-` sign on the right side of the track's display container.
 - Change Playlist Title — users can change the title of their custom playlist.
 - Save Playlist to Account — users can save their custom playlist by clicking a button called SAVE TO SPOTIFY.
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
+- **ADDED** - Press Enter to search
 
 
 
