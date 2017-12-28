@@ -1,5 +1,8 @@
-const clientId = '6e39525503334827ab0a8a4a21d709ab';
-const redirectUri = 'http://jammmingwithjames.surge.sh/';
+import config from './config';
+//const clientId = '6e39525503334827ab0a8a4a21d709ab';
+const clientId = config.clientId;
+//const redirectUri = 'http://jammmingwithjames.surge.sh/';
+const redirectUri = 'http://localhost:3000/';
 const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 
 let accessToken;

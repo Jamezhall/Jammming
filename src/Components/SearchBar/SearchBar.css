@@ -1,20 +1,23 @@
 .SearchBar {
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  text-align: center;
   align-items: center;
-  padding-top: 6.94rem;
-  margin-bottom: 6.33rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
 .SearchBar input {
-  width: 287px;
-  padding: .88rem 0;
+  font-family: 'circular-book', sans-serif;
+  width: 70%;
+  height: 48px;
+  padding: .7rem 0;
   border: 1px solid #fff;
-  border-radius: 3px;
-  margin-bottom: 2.22rem;
-  color: #010c3f;
+  border-radius: 50px;
+  color: #505050;
   text-align: center;
   font-size: 1rem;
+  margin-right: 5px;
 }
 
 .SearchBar input:focus {
@@ -23,13 +26,21 @@
 
 .SearchBar a {
   cursor: pointer;
-  width: 8.11rem;
-  padding: .77rem 0;
-  border-radius: 54px;
-  background-color: #010c3f;
+  background: #6c41ec;
+  background: -moz-linear-gradient(left, #6c41ec 0%, #e01de6 100%);
+  background: -webkit-linear-gradient(left, #6c41ec 0%,#e01de6 100%);
+  background: linear-gradient(to right, #6c41ec 0%,#e01de6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6c41ec', endColorstr='#e01de6',GradientType=1 );
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   text-align: center;
-  font-size: .833rem;
-  transition: background-color .25s;
+  line-height: 48px;
+  vertical-align: middle;
+  padding: 15px;
+}
+.SearchBar a svg path {
+  fill: #FFF;
 }
 
 .SearchBar a:hover {

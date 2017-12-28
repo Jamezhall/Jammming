@@ -1,0 +1,15 @@
+.App-logo {
+  width: 48px;
+  margin-right: 1.5rem;
+}
+
+h1 {
+  display: inline-block;
+  font-family: 'circular-black', sans-serif;
+  font-size:3rem;
+  color: #fff;
+}
+
+h1 .highlight {
+  color: #6C41EC;
+}

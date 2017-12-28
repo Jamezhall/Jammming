@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { Header } from '../Header/Header';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 import './App.css';
+
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import brands from '@fortawesome/fontawesome-free-brands';
+import { faInfoCircle, faSearch } from '@fortawesome/fontawesome-free-solid';
+
+fontawesome.library.add(brands, faInfoCircle, faSearch);
 
 class App extends Component {
   constructor(props) {
@@ -67,21 +75,29 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar onSearch={this.search}/>
-          <div className="App-playlist">
-            <SearchResults 
-              searchResults={this.state.searchResults} 
-              onAdd={this.addTrack} />
-            <Playlist 
-              isRemoval={true} 
-              playlistName={this.state.playlistName} 
-              playlistTracks={this.state.playlistTracks} 
-              onRemove={this.removeTrack} 
-              onNameChange={this.updatePlaylistName} 
-              onSave={this.savePlaylist}/>
-          </div>
+          <Header />
+          <main>
+            <div className="container">
+              <div className="row" >
+                <div className="col-md-6">
+                  <SearchBar onSearch={this.search} />
+                  <SearchResults
+                    searchResults={this.state.searchResults}
+                    onAdd={this.addTrack} />
+                </div>
+                <div className="col-md-6">
+                  <Playlist
+                    isRemoval={true}
+                    playlistName={this.state.playlistName}
+                    playlistTracks={this.state.playlistTracks}
+                    onRemove={this.removeTrack}
+                    onNameChange={this.updatePlaylistName}
+                    onSave={this.savePlaylist} />
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     );

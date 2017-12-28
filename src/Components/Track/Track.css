@@ -1,14 +1,18 @@
 .Track {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  background-color: #252D47;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  padding: 1rem;
 }
 
 .Track-action {
   cursor: pointer;
   padding: .5rem;
-  font-size: 1.05rem;
-  transition: color .25s;
+  font-size: 1.125rem;
+  color: #FFF!important;
+  font-family: 'circular-bold', sans-serif;
 }
 
 .Track-action:hover {
@@ -25,10 +29,13 @@
 
 .Track-information h3 {
   margin-bottom: .22rem;
+  font-size: 1rem;
+  color: #FFFFFF;
+  font-family: 'circular-bold', sans-serif;
 }
 
 .Track-information p {
-  font-size: .83rem;
-  font-weight: 300;
-  color: rgba(256, 256, 256, 0.8);
+  font-size: .875rem;
+  font-family: 'circular-book', sans-serif;
+  color: #515D85;
 }
